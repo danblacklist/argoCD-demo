@@ -33,7 +33,7 @@ spec:
   source:
     repoURL: https://github.com/danblacklist/argoCD-demo.git
     targetRevision: HEAD
-    path: nginx
+    path: nginx-service
   destination: 
     server: https://kubernetes.default.svc
     namespace: default
