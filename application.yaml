@@ -5,7 +5,6 @@ metadata:
   namespace: argocd
 spec:
   project: default
-
   source:
     repoURL: https://github.com/danblacklist/argoCD-demo.git
     targetRevision: HEAD
@@ -13,11 +12,9 @@ spec:
   destination: 
     server: https://kubernetes.default.svc
     namespace: myapp
-
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
-
     automated:
       selfHeal: true
       prune: true
@@ -29,7 +26,6 @@ metadata:
   namespace: argocd
 spec:
   project: default
-
   source:
     repoURL: https://github.com/danblacklist/argoCD-demo.git
     targetRevision: HEAD
@@ -37,12 +33,24 @@ spec:
   destination: 
     server: https://kubernetes.default.svc
     namespace: default
-
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
-
     automated:
       selfHeal: true
       prune: true
-
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: 51.2.0
+    chart: kube-prometheus-stack
+destination:
+  server: https://kubernetes.default.svc
+  namespace: prometheus
