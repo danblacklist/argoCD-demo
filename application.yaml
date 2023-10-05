@@ -21,3 +21,28 @@ spec:
     automated:
       selfHeal: true
       prune: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-nginx-application
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/danblacklist/argoCD-demo.git
+    targetRevision: HEAD
+    path: nginx
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true
+
