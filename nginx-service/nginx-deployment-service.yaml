@@ -37,7 +37,7 @@ metadata:
   labels:
     deployment-name: nginx-deployment
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       deployment-name: nginx-deployment
