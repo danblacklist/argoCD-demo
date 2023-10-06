@@ -77,11 +77,25 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  labels:
+    app.kubernetes.io/instance: my-nginx-application
   name: nginx-service
+  namespace: default
 spec:
+  clusterIP: 10.100.125.102
+  clusterIPs:
+  - 10.100.125.102
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
   selector:
     deployment-name: nginx-deployment
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
