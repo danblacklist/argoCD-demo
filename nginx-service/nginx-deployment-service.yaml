@@ -17,7 +17,7 @@ data:
       server_name  localhost;
 
       location /app {
-          root   /usr/share/nginx/html/app;
+          root   /usr/share/nginx/html;
           index  index.html index.htm;
       }  
 
